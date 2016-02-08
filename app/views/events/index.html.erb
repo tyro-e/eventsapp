@@ -1,0 +1,36 @@
+<br>
+<h1><center>UPCOMING</h1>
+
+<table align="center" cellspacing="20">
+  <thead>
+    <tr>
+      <th>ARTIST</th>
+      <th>VENUE</th>
+      <th>TIME</th>
+      <th>DATE</th>
+      <th>€</th>
+      <th>AGE</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.artist.artist_name %></td>
+        <td><%= event.venue.venue_name %></td>
+        <td><%= event.time.strftime("%H:%M") %></td>
+        <td><%= event.date.strftime("%B %d, %Y") %></td>
+        <td><%= event.price %></td>
+        <td><%= event.age %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<center><%= link_to 'New Event', new_event_path %>

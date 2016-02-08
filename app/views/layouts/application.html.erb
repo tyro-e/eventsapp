@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id = "banner">
+	<%= image_tag("warehouse.png", :size => "800x120") %>
+	
+</div>
+
+<div id = "nav">	
+	<ul>	
+		<li><%= link_to "Upcoming", events_path%></li>
+		<li><%= link_to "Venues", venues_path%></li>
+		<li><%= link_to "Artists", artists_path%></li>
+		<li><%= mail_to "c12468558@mydit.ie", "Contact us" %></li>		
+		<% if !logged_in? %>
+			<li><%= link_to "Sign in", login_path %></li>
+		<% else %>
+			<li>Signed in as <%= @current_user.name %></li>
+			<li><%= link_to "Sign out", logout_path %></li>
+		<%end %>
+	</ul>
+</div>
+
+<% flash.each do |key, value| %>
+	<div class="flash <%=key %>">
+		<%= value %>
+	</div>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
